@@ -1,4 +1,8 @@
+# python 
+__pycache__/
+
+# Virtualenv
 /myenv
-/todolist/todolist/__pycache__
-/todolist/tasks/__pycache__
-/todolist/tasks/migrations
+
+# Django
+/todolist/*.sqlite3
