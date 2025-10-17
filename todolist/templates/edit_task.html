@@ -1,0 +1,14 @@
+<h1>edit task</h1>
+<form method="post">
+    {% csrf_token %}
+    <label>new task content:</label>
+    <input type="text" name="content" required>
+    <br><br>
+    <label>status:</label>
+    <select name="status">
+        <option value="undo">undo</option>
+        <option value="done">done</option>
+    </select>
+    <br><br>
+    <button type="submit">submit</button>
+</form>

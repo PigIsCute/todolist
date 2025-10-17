@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>add task</title>
+    </head>
+    <body>
+        <form action="" method="post">
+            {% csrf_token %}
+            <p>task content: <input type="text" name="content" required></p>
+            <button type="submit" href="">submit</button>
+        </form>
+    </body>
+</html>
