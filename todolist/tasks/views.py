@@ -8,17 +8,14 @@ def list_tasks(request):
     return render(request, "todolist.html", locals())
 
 def add_task(request):
-    if request.method == 'GET':
-        return render(request, "add_task.html", locals())
-    elif request.method == 'POST':
+    if request.method == 'POST':
         content = request.POST['content']
         Task.objects.create(content=content, status='undo')
         return redirect('list_tasks')
+    return render(request, 'add_task.html', locals()) 
 
 def edit_task(request, task_id):
-    if request.method == 'GET':
-        return render(request, "edit_task.html", locals())
-    elif request.method == 'POST':
+    if request.method == 'POST':
         content = request.POST['content']
         status = request.POST['status']
         task = Task.objects.get(id=task_id)
@@ -26,6 +23,7 @@ def edit_task(request, task_id):
         task.status = status
         task.save()
         return redirect('list_tasks')
+    return render(request, "edit_task.html", locals())
 
 def delete_task(request, task_id):
     task = Task.objects.get(id=task_id)

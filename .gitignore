@@ -6,3 +6,7 @@ __pycache__/
 
 # Django
 /todolist/*.sqlite3
+
+# Test
+.coverage
+htmlcov/
