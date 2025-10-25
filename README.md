@@ -29,5 +29,4 @@
 - statement coverage: 100%
 - branch coverage: 100%
 - ![coverage report](todolist/README_STATIC/coverage_report.png)
-## Demo 影片
-https://www.youtube.com/watch?v=mIBRbtPka1o
+
