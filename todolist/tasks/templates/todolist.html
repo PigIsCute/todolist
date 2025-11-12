@@ -73,7 +73,7 @@
     <h1>我的待辦清單</h1>
 
     <!-- 新增按鈕 -->
-    <button class="btn btn-add" onclick="window.location.href='/add_task/'">＋ 新增待辦</button>
+    <button class="btn btn-add" onclick="window.location.href='{% url 'task-create' %}'">＋ 新增待辦</button>
 
     <!-- 表格 -->
     <table>
@@ -92,8 +92,8 @@
                     <td>{{ task.content }}</td>
                     <td>{{ task.status }}</td>
                     <td>
-                        <button class="btn btn-edit" onclick="window.location.href='/edit_task/{{ task.id }}'">編輯</button>
-                        <button class="btn btn-delete" onclick="window.location.href='/delete_task/{{ task.id }}/'">刪除</button>
+                        <button class="btn btn-edit" onclick="window.location.href='{% url 'task-update' task.id %}'">編輯</button>
+                        <button class="btn btn-delete" onclick="window.location.href='{% url 'task-delete' task.id %}'">刪除</button>
                     </td>
                 </tr>
             {% endfor %}

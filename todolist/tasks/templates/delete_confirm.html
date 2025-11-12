@@ -1,0 +1,6 @@
+<form method="post" action="">
+    {% csrf_token %}
+    <p>確定要刪除: {{ task.content }} ?</p>
+    <button type="submit">是，刪除</button>
+    <a href="{% url 'task-list' %}">取消</a>
+</form>

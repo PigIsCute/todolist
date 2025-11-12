@@ -1,31 +1,30 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.urls import reverse_lazy
 from tasks.models import Task
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 # Create your views here.
-def list_tasks(request):
-    tasks = Task.objects.all()
-    return render(request, "todolist.html", locals())
+class TaskListView(ListView):
+    model = Task
+    template_name = 'todolist.html'
+    context_object_name = 'tasks'
 
-def add_task(request):
-    if request.method == 'POST':
-        content = request.POST['content']
-        Task.objects.create(content=content, status='undo')
-        return redirect('list_tasks')
-    return render(request, 'add_task.html', locals()) 
+class TaskCreateView(CreateView):
+    model = Task
+    template_name = 'add_task.html'
+    fields = ['content', 'status']
+    success_url = reverse_lazy('task-list')
 
-def edit_task(request, task_id):
-    if request.method == 'POST':
-        content = request.POST['content']
-        status = request.POST['status']
-        task = Task.objects.get(id=task_id)
-        task.content = content
-        task.status = status
-        task.save()
-        return redirect('list_tasks')
-    return render(request, "edit_task.html", locals())
+class TaskUpdateView(UpdateView):
+    model = Task
+    pk_url_kwarg = 'task_id'
+    template_name = 'edit_task.html'
+    fields = ['content', 'status']
+    success_url = reverse_lazy('task-list') 
 
-def delete_task(request, task_id):
-    task = Task.objects.get(id=task_id)
-    task.delete()
-    return redirect('list_tasks')
+class TaskDeleteView(DeleteView):
+    model = Task    
+    template_name = 'delete_confirm.html'
+    pk_url_kwarg = 'task_id'
+    success_url = reverse_lazy('task-list')
