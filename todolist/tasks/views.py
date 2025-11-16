@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from tasks.models import Task
@@ -9,6 +10,10 @@ class TaskListView(ListView):
     model = Task
     template_name = 'todolist.html'
     context_object_name = 'tasks'
+
+    def get_queryset(self):
+        user_id = self.kwargs['user_id']
+        return Task.objects.filter(owner=user_id)
 
 class TaskCreateView(CreateView):
     model = Task
