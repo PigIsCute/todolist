@@ -20,7 +20,7 @@ class UserLoginView(LoginView):
 
     def get_success_url(self):
         user_id = self.request.user.id
-        return reverse('task-list', kwargs={'user_id': user_id})
+        return reverse('task-list')
 
 class UserLogoutView(LogoutView):
     next_page = reverse_lazy('login')
